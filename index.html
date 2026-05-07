@@ -2,119 +2,384 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>Mensagem</title>
+<title>Nosso Amor</title>
 
 <style>
-body {
-    margin: 0;
-    background: black;
-    overflow: hidden;
-    font-family: Arial, sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
 }
 
-/* Botão */
-#startBtn {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 15px 35px;
-    font-size: 18px;
-    background: white;
-    color: black;
-    border: none;
-    cursor: pointer;
-    border-radius: 8px;
-    z-index: 10; /* garante clique */
+/* TELAS */
+.tela {
+    display: none;
+    width: 100%;
+    height: 100vh;
 }
 
-/* Container */
-#container {
-    position: absolute;
-    width: 100%;
-    display: flex;
-    justify-content: center;
+.ativa {
+    display: flex;
 }
 
-/* Texto */
-#text {
-    max-width: 600px;
-    text-align: center;
-    color: white;
-    font-size: 22px;
-    line-height: 1.7;
-    opacity: 0;
-    position: relative;
+/* ================= INTRO ================= */
+#intro {
+    background: black;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
 }
 
-/* Animação */
-.animateText {
-    animation: descer 10s ease forwards;
+.heart-img {
+    width: 120px;
+    opacity: 0;
+    transform: scale(0.5);
+    animation: aparecer 1.5s forwards;
 }
 
-@keyframes descer {
-    0% {
-        top: 0;
-        opacity: 0;
-    }
-    100% {
-        top: 320px;
-        opacity: 1;
-    }
+@keyframes aparecer {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
-/* Imagem */
-#foto {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 420px;
-    border-radius: 15px;
-    opacity: 0;
-    filter: brightness(0);
-    transition: opacity 3s ease, filter 3s ease;
+.heart-text {
+    margin-top: 20px;
+    color: #ff4d8d;
+    opacity: 0;
+    animation: fade 2s forwards;
+    animation-delay: 1s;
+}
+
+@keyframes fade {
+    to { opacity: 1; }
+}
+
+/* ================= HOME ================= */
+#home {
+    background: radial-gradient(circle, #0d0d0d, #000);
+    color: white;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6vw;
+    width: 100%;
+    max-width: 1100px;
+    padding: 0 20px;
+}
+
+.texto-lado {
+    width: 22vw;
+    max-width: 260px;
+    font-size: clamp(14px, 1.2vw, 18px);
+    line-height: 1.7;
+    opacity: 0.9;
+    text-align: center;
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo {
+    width: clamp(140px, 18vw, 220px);
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.btn {
+    padding: 12px 30px;
+    font-size: clamp(14px, 1vw, 16px);
+    background: white;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #ff4d6d;
+    color: white;
+}
+
+/* ================= PAGINA 2 ================= */
+#principal {
+    background: radial-gradient(circle at center, #080808, #000);
+    color: white;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2vw;
+}
+
+.main-img, .next {
+    width: clamp(220px, 30vw, 320px);
+    height: clamp(220px, 30vw, 320px);
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.main-img {
+    box-shadow: 0 30px 80px rgba(0,0,0,0.9);
+}
+
+.main-img img, .next img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.next {
+    opacity: 0.03;
+}
+
+.seta {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+    color: rgba(255,255,255,0.4);
+    cursor: pointer;
+}
+
+.texto {
+    margin-top: 40px;
+    text-align: center;
+    max-width: 90%;
+}
+
+.texto-extra {
+    margin-top: 15px;
+    font-size: 20px;
+    opacity: 0.85;
+}
+
+/* CORAÇÃO FINAL */
+.heart-final {
+    width: 60px;
+    transform-origin: center;
+    transform: translateY(30px);
+}
+
+.heart-wrapper {
+    margin-top: 55px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* ANIMAÇÕES */
+@keyframes crescer {
+    to {
+        transform: translateY(30px) scale(2.6);
+    }
+}
+
+@keyframes pulsar {
+    0% { transform: translateY(30px) scale(2.6); }
+    50% { transform: translateY(30px) scale(2.75); }
+    100% { transform: translateY(30px) scale(2.6); }
+}
+
+.heart-container {
+    position: relative;
+    display: inline-block;
+    transform-origin: center;
+}
+
+#principal.ativa .heart-container {
+    animation: crescer 2s ease forwards, pulsar 1.5s ease-in-out infinite;
+    animation-delay: 2s, 4s;
+}
+
+.heart-texto {
+    position: absolute;
+    top: 82%;
+    left: 53%;
+    transform: translate(-50%, -50%);
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    opacity: 0;
+}
+
+/* TEXTO M.M APARECE E FICA */
+#principal.ativa .heart-texto {
+    animation: aparecerTexto 1s ease forwards;
+    animation-delay: 4s;
+}
+
+@keyframes aparecerTexto {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    60% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+
+    .home-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .texto-lado {
+        width: 80%;
+    }
+
+    .container {
+        flex-direction: column;
+    }
+
+    .next {
+        display: none;
+    }
+
+    .seta {
+        margin-top: 10px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<button id="startBtn">Começar</button>
+<audio id="musica" loop>
+    <source src="musica.mp3" type="audio/mpeg">
+</audio>
 
-<div id="container">
-    <div id="text">
-        Desde o dia em que conheci essa garota, não consigo descrever o que aconteceu entre a gente. 
-        Só sei que, nesse tempo que estamos aproveitando juntos, têm sido os melhores momentos dos meus últimos anos.
-        <br><br>
-        Ela é incrível, tem um carisma e um jeitinho meio bruto que me faz querer ficar perto o tempo todo. 
-        Não sei explicar… só sei que a nossa vibe é a mesma, o tempo acelera e, a cada palavra, tudo passa ainda mais rápido.
-        <br><br>
-        A cada momento que passa, tenho ainda mais certeza de que escolhi a pessoa certa.
-    </div>
+<!-- INTRO -->
+<div id="intro" class="tela ativa" onclick="irHome()">
+    <img src="coracaov.png" class="heart-img">
+    <div class="heart-text">clique aqui ❤️</div>
 </div>
 
-<img id="foto" src="https://cdn.discordapp.com/attachments/1118707738801868851/1493498877901410374/20260405_225104.jpg?ex=69df30b8&is=69dddf38&hm=abeb5ec04574944fcc7257cd9b6f32c7f3ecab3c1b3a1577550ca16b453f673d&">
+<!-- HOME -->
+<div id="home" class="tela">
+
+    <div class="home-container">
+
+        <div class="texto-lado">
+            Eu sempre soube que seria você, desde o primeiro momento
+            não tive dúvidas. E hoje, olhando tudo que a gente vive,
+            tenho ainda mais certeza que encontrei a mulher da minha vida.
+        </div>
+
+        <div class="center">
+            <img src="logo.jpeg" class="logo">
+            <button class="btn" onclick="entrar()">Continuar ❤️</button>
+        </div>
+
+        <div class="texto-lado">
+            O tempo com você simplesmente passa rápido, independente
+            do que a gente esteja fazendo. Nossa vibe combina de um jeito
+            único, e desde que a gente ficou junto, os dias ganharam mais vida.
+        </div>
+
+    </div>
+
+</div>
+
+<!-- PAGINA 2 -->
+<div id="principal" class="tela">
+
+    <div class="container">
+        
+        <div class="main-img">
+            <img id="imgPrincipal" src="fotos/foto1.jpeg">
+        </div>
+
+        <div class="seta" onclick="proxima()">➜</div>
+
+        <div class="next" onclick="proxima()">
+            <img id="imgNext" src="fotos/foto2.jpeg">
+        </div>
+
+    </div>
+
+    <div class="texto">
+        <p>Desde que te conheci, tudo ficou mais leve... ❤️</p>
+
+        <div class="texto-extra">
+            E cada momento ao seu lado só confirma que tudo isso
+            faz sentido. Não importa onde a gente esteja ou o que
+            esteja fazendo, sempre parece o melhor lugar do mundo
+            quando é com você.
+        </div>
+
+        <div class="heart-wrapper">
+            <div class="heart-container">
+                <img src="coracaob.png" class="heart-final">
+                <span class="heart-texto">M.M</span>
+            </div>
+        </div>
+
+    </div>
+
+</div>
 
 <script>
-const btn = document.getElementById("startBtn");
-const text = document.getElementById("text");
-const foto = document.getElementById("foto");
+function irHome() {
+    intro.classList.remove("ativa");
+    home.classList.add("ativa");
+    musica.play();
+}
 
-btn.addEventListener("click", () => {
-    btn.style.display = "none";
+function entrar() {
+    home.classList.remove("ativa");
+    principal.classList.add("ativa");
+}
 
-    setTimeout(() => {
-        text.style.opacity = "1";
-        text.classList.add("animateText");
+/* CARROSSEL */
+let fotos = [
+    "fotos/foto1.jpeg",
+    "fotos/foto2.jpeg",
+    "fotos/foto3.jpeg",
+    "fotos/foto4.jpeg"
+];
 
-        setTimeout(() => {
-            foto.style.opacity = "1";
-            foto.style.filter = "brightness(1)";
-        }, 10000);
+function atualizar() {
+    imgPrincipal.src = fotos[0];
+    imgNext.src = fotos[1];
+}
 
-    }, 1000);
-});
+function proxima() {
+    fotos.push(fotos.shift());
+    atualizar();
+}
+
+setInterval(proxima, 3500);
+atualizar();
 </script>
 
 </body>
